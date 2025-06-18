@@ -25,6 +25,14 @@ class circle():
         self.x+=5
         pygame.draw.circle(self.surf,self.color,(self.x,self.y),self.r)
 
+    def left(self):
+        self.x-=5
+        pygame.draw.circle(self.surf,self.color,(self.x,self.y),self.r)
+
+    def down(self):
+        self.y+=5
+        pygame.draw.circle(self.surf,self.color,(self.x,self.y),self.r)
+
     def big(self):
         self.r+=5
         pygame.draw.circle(self.surf,self.color,(self.x,self.y),self.r)
@@ -37,6 +45,10 @@ while run:
     for event in pygame.event.get():
         if event.type==pygame.MOUSEBUTTONDOWN:
             c1.big()
+        if event.type==pygame.MOUSEMOTION:
+            pos = pygame.mouse.get_pos()
+            c2=circle(15,pos[0],pos[1],"blue")
+            c2.draw()
         if event.type == pygame.QUIT:
             pygame.quit()
         if event.type==pygame.KEYDOWN:
@@ -46,5 +58,11 @@ while run:
             if event.key==pygame.K_RIGHT:
                 screen.fill("orange")
                 c1.right()
+            if event.key==pygame.K_LEFT:
+                screen.fill("orange")
+                c1.left()
+            if event.key==pygame.K_DOWN:
+                screen.fill("orange")
+                c1.down()
     pygame.display.update()
 
